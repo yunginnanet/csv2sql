@@ -201,7 +201,7 @@ func main() {
 		// call to display the standard command lines usage info
 		flag.Usage()
 		// let user know we ran as expected
-		fmt.Println("\n\nAll is well.\n")
+		fmt.Println("\n\nAll is well.")
 		// exit the application
 		os.Exit(-3)
 	}
@@ -333,7 +333,8 @@ func main() {
 			if len(record[i]) == 0 || record[i] == "NULL" {
 				strbuffer.WriteString("NULL")
 			} else {
-				strbuffer.WriteString("\"" + record[i] + "\"")
+				cleaned := strings.ReplaceAll(record[i], "'", "''")
+				strbuffer.WriteString("'" + cleaned + "'")
 			}
 			// if we have not reached the last record yet - add a coma also to the output
 			if i < len(record)-1 {
@@ -386,7 +387,7 @@ func main() {
 
 	// print out some stats about the csv file processed
 	fmt.Println("\nSTATS\n\tCSV file", csvFileName, "has", lineCount, "lines with", csvFields, "CSV fields per record")
-	fmt.Println("\tThe conversion took", end.Sub(start), "to run.\n\nAll is well.\n")
+	fmt.Println("\tThe conversion took", end.Sub(start), "to run.\n\nAll is well.")
 }
 
 //
